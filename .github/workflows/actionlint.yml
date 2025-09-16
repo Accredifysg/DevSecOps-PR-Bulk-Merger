@@ -2,6 +2,10 @@ name: Lint GitHub Actions
 on:
   push:
     paths: ['.github/**']
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   actionlint:
     runs-on: ubuntu-latest
